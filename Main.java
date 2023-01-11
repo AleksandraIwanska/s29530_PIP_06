@@ -1,0 +1,82 @@
+public class Main {
+    public static void main(String[] args) {
+
+
+        // zadanie 1
+        int[] genArr = generateArray(5);
+        printArray(genArr);
+        System.out.println("------------------");
+        System.out.println();
+
+        // zadanie 2
+        int[] sortedArr = sort(genArr);
+        printArray(sortedArr);
+        System.out.println("------------------");
+        System.out.println();
+
+        // zadanie 3
+        int[] revArr = reverse(sortedArr);
+        printArray(revArr);
+        System.out.println("------------------");
+        System.out.println();
+
+        // zadanie 4
+        System.out.println(equalsReverse(sortedArr,revArr));
+
+    }
+
+
+
+
+
+    public static int[] generateArray(int n){
+        int[] tab = new int[n];
+        for (int i = 0; i < tab.length; i++) {
+            tab[i] = (int)(Math.random() * 100);
+        }
+        return tab;
+    }
+
+    public static void printArray(int[] tab){
+        for (int i = 0; i < tab.length; i++) {
+            System.out.println(tab[i]);
+        }
+    }
+
+    public static int[] sort(int[] tab){
+        int temp;
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab.length - 1; j++) {
+                if (tab[j]>tab[j+1]){
+                    temp = tab[j+1];
+                    tab[j+1] = tab[j];
+                    tab[j] = temp;
+                }
+            }
+        }
+        return tab;
+    }
+
+    public static int[] reverse(int[] tab){
+        int[] temp = new int[tab.length];
+        int x = 0;
+        for (int i = tab.length - 1; i >= 0; i--) {
+            temp[x] = tab[i];
+            x++;
+        }
+        return temp;
+    }
+
+    public static boolean equalsReverse (int[] sort, int[] reverse){
+        boolean status = true;
+        int x = reverse.length - 1;
+        for (int i = 0; i < sort.length; i++) {
+            if (sort[i] != reverse[x]){
+                status = false;
+            }
+            x--;
+        }
+        return status;
+    }
+
+}
